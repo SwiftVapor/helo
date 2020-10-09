@@ -1,0 +1,46 @@
+
+.login{
+    position: relative;
+    left:35%;
+    top: 25vh;
+    box-shadow: 2px 5px 10px ;
+    width: 350px;
+    height: 250px;
+    border-radius: 5px;
+    padding-top: 20px;
+}
+.logo{
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+.login h1{
+    color: white;
+    font-size: 50px;
+    text-align: center;
+    font-weight: 700;
+}
+.inputBoxes{
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    color: white;
+
+}
+
+.inputBoxes label{
+    float: left;
+    display: block;
+}
+
+.signInButtons{
+
+}
+.loginButton{
+    color: white;
+    background-color: #403d39;
+}
+.registerButton{
+    color: white;
+    background-color: #403d39;
+}
