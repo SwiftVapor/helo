@@ -6,9 +6,11 @@ create table if not exists helo_user (
     profile_picture text
 );
 
-alter table helo_user (
-    password text
-)
+alter table helo_user
+alter password
+set data type text
+;
+
 
 insert into helo_user (username, email, password, profile_picture) values
 ('JeffJefferson', 'Jeff@mail.com', 'password', 'funnypicture'),
