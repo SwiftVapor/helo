@@ -1,3 +1,4 @@
+import axios from 'axios';
 import React, { Component } from 'react'
 import './Auth.css'
 class Auth extends Component {
@@ -7,10 +8,52 @@ class Auth extends Component {
             username: '',
             email: '',
             password: '',
-            varPassword: '',
+            verPassword: '',
+            picture: '',
             registerView: false
         }
     }
+
+    // componentDidMount(){
+    //     if(this.props.user.email){
+    //         this.props.history.push('/dash');
+    //     }
+    // }
+
+    inputFunction = (event) => {
+        this.setState ({[event.target.name]: event.target.value})
+    }
+
+    toggle = () => {
+        this.setState ({registerView: !this.state.registerView})
+    }
+
+    register =() => {
+        const{ username, email, password, verPassword, picture} = this.state;
+        if (password && password === verPassword){
+            axios.post ('/api/register', {username, email, password, profilePicture: picture})
+            .then(res => {
+                this.props.getUser(res.data);
+                this.props.history.push('/dash');
+            })
+            .catch(err => console.log(err));
+        } else {
+            alert ("Passwords don't match")
+        }
+    }
+
+    login = () =>{
+        const {email, password} = this.state;
+
+        axios.post ('/api/login', {email, password})
+        .then(res => {
+            this.props.getUser(res.data);
+            this.props.history.push ('/dash');
+        })
+        .catch(err=> console.log(err));
+    }
+
+
     render(){
         return(
             <div className= 'login'>
@@ -31,7 +74,7 @@ class Auth extends Component {
                 </div>
                 <div classNam= 'signInButtons'>
                     <button className= 'loginButton'>Login</button>
-                    <button className= 'registerButton'>Register</button>
+                    <button className= 'registerButton' onClick={this.register}>Register</button>
                 </div>
             </div>
         )
